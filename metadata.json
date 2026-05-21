@@ -1,0 +1,5 @@
+{
+  "name": "Frontier Homeopathic Medical College (FHMC)",
+  "description": "Official website of Frontier Homeopathic Medical College Peshawar, offering BHMS and Diploma in Homeopathic medicine.",
+  "requestFramePermissions": ["geolocation"]
+}
