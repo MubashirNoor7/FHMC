@@ -1,9 +1,9 @@
-import React from 'react';
+﻿import React from 'react';
 import { Outlet } from 'react-router-dom';
 import TopHeader from './TopHeader';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import GeminiChat from './GeminiChat';
+import CollegeSupportChat from './SupportChat';
 
 const Layout = () => {
   return (
@@ -14,9 +14,10 @@ const Layout = () => {
         <Outlet />
       </main>
       <Footer />
-      <GeminiChat />
+      <CollegeSupportChat />
     </div>
   );
 };
 
 export default Layout;
+

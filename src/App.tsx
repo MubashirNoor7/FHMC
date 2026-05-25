@@ -43,7 +43,7 @@ export default function App() {
             <Route path="about" element={<About />} />
           </Route>
           
-          {/* Secret Role-Specific Login Access */}
+          {/* Role-Specific Login Access */}
           <Route path="/portal/admin-access" element={<Login forcedRole="admin" />} />
           <Route path="/portal/faculty-access" element={<Login forcedRole="teacher" />} />
           <Route path="/portal/student-access" element={<Login forcedRole="student" />} />

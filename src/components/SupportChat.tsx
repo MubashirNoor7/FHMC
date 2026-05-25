@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MessageSquare, Send, X, Brain } from 'lucide-react';
+import { MessageSquare, Send, X, Headphones } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { GoogleGenAI } from "@google/genai";
 import { cn } from '../lib/utils';
 
-const GeminiChat = () => {
+const CollegeSupportChat = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<{ role: 'user' | 'ai', text: string }[]>([
-    { role: 'ai', text: 'Welcome to Frontier Homeopathic Medical College! How can I assist you with admissions or course details?' }
+  const [messages, setMessages] = useState<{ role: 'user' | 'college', text: string }[]>([
+    { role: 'college', text: 'Welcome to Frontier Homeopathic Medical College! How can I assist you with admissions or course details?' }
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -24,12 +23,10 @@ const GeminiChat = () => {
     setMessages(prev => [...prev, { role: 'user', text: userMsg }]);
     setIsTyping(true);
 
-    // Super-Mock: High-Fidelity Knowledge Engine
     try {
       const lowerInput = userMsg.toLowerCase().trim();
-      let aiResponse = "";
+      let response = "";
       
-      // Extended Institutional Knowledge Base
       const KNOWLEDGE_BASE = [
         {
           category: "Admissions Hub",
@@ -89,11 +86,10 @@ const GeminiChat = () => {
         {
           category: "Greetings",
           keys: ['hello', 'hi', 'hey', 'assalam', 'a.a', 'aoa'],
-          res: "Hello! Welcome to the Frontier Homeopathic Medical College digital assistant. How can I guide your path to becoming a clinical homeopathic doctor today?"
+          res: "Hello! Welcome to the Frontier Homeopathic Medical College help desk. How can I guide your path to becoming a clinical homeopathic doctor today?"
         }
       ];
 
-      // Smart Intent Scoring Logic
       let bestMatch = null;
       let highestScore = 0;
 
@@ -109,16 +105,15 @@ const GeminiChat = () => {
       });
 
       if (bestMatch && highestScore > 0) {
-        aiResponse = bestMatch.res;
+        response = bestMatch.res;
       } else {
-        aiResponse = "That's an interesting question! While I'm still gathering some fine details, I can tell you all about our KMU-affiliated BHMS degree (5 years) and DHMS diploma (4 years). Would you like to know about our Hayatabad location or admission requirements?";
+        response = "Thank you for your question. Our admissions office can guide you about the KMU-affiliated BHMS degree (5 years), DHMS diploma (4 years), campus location, fee details, and required documents.";
       }
 
-      // Simulate Thinking Time (more natural)
       await new Promise(r => setTimeout(r, 600 + Math.random() * 800));
-      setMessages(prev => [...prev, { role: 'ai', text: aiResponse }]);
+      setMessages(prev => [...prev, { role: 'college', text: response }]);
     } catch (error) {
-      setMessages(prev => [...prev, { role: 'ai', text: "I apologize, I'm experiencing a brief system disruption. Please feel free to reach our office directly at 0332 9585893." }]);
+      setMessages(prev => [...prev, { role: 'college', text: "I apologize, I'm experiencing a brief system disruption. Please feel free to reach our office directly at 0332 9585893." }]);
     } finally {
       setIsTyping(false);
     }
@@ -136,9 +131,9 @@ const GeminiChat = () => {
           >
             <div className="bg-primary p-6 text-white flex justify-between items-center">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center"><Brain size={20} /></div>
+                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center"><Headphones size={20} /></div>
                 <div>
-                  <h4 className="font-bold text-sm">FHMC Assistant</h4>
+                  <h4 className="font-bold text-sm">FHMC Help Desk</h4>
                   <p className="text-[10px] text-white/70">Always Online</p>
                 </div>
               </div>
@@ -165,4 +160,4 @@ const GeminiChat = () => {
   );
 };
 
-export default GeminiChat;
+export default CollegeSupportChat;
